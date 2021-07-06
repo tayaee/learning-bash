@@ -1,0 +1,96 @@
+https://www.linkedin.com/learning/linux-bash-shell-and-scripts
+
+2.1 typeset, declare
+
+	# 정수 변수
+	typeset -i x
+
+	let x++
+	let y=x**2
+	let x=x*3
+	let x*=5
+
+	# 내용 소문자로 저장
+	declare -l lc
+
+	lc=Banana
+	echo $lc
+
+	# 내용을 대문자로 저장
+	declare -u uc
+
+	declare -r readOnly
+
+	declare -a indexedArray
+
+	declare -A assocArray
+
+	# 아래 셋 다 같음. 모두 로컬 변수 선언.
+
+		local localVar
+		declare localVar
+		typeset localVar
+
+	# local vs declare
+
+		local과 declare의 기능은 거의 같다, 둘 다 로컬 변수 선언용.
+		local은 함수 안에서만 사용할 수 있지만, declare는 아무 데서나 사용 가능.
+		local 명령은 모든 local 변수를 출력. declare는 그 자체로는 아무 기능 없음.
+
+	# typeset vs declare
+
+		typeset -i intVar 타입 지정 가능
+		typeset -r readOnlyVar
+
+	# bash manpage
+
+		declare [-aAfFilrtux] [-p] [name[=value] ...]
+		typeset [-aAfFilrtux] [-p] [name[=value] ...]
+
+	bash에는 declare, typeset 둘 다 있지만, ksh에는 typeset만 있다. typeset을 쓰자.
+
+2.2
+
+	while ((x<10))
+	do
+		echo $x
+		((x=x+1))
+	done
+
+	# if statements
+
+	if test -f afile
+
+	if [[ -f bfile ]]
+
+	if test $x -eq 5
+
+	# [[ ]] vs. [ ]
+
+	[ ] 는 test의 synonym
+
+	[[ ]] 는 bash의 키워드
+
+	[ ] 예전 POSIX 표준. sh
+
+	[[ ]] 새 POSIX 표준. bash, ksh, zsh
+
+	[[ ]]는 키워드이므로 바로 실행하지만, [ ] 또는 test는 shell을 생성한다. 즉 느리다.
+
+	[ $a lt $b ] 이거 동작
+
+	[ $a < $b ] 이건 error
+
+	[ $a \< $b ] 이거 동작
+
+	[[ $a < $b ]] 이거 동작.
+
+	# 문자열 비교
+
+	if [ "$x" = "hello" ]; then
+		...
+
+	# REGEX 매치
+
+	if [[ "$x" =~ "hello*" ]; then
+		...
