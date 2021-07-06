@@ -94,3 +94,47 @@ https://www.linkedin.com/learning/linux-bash-shell-and-scripts
 
 	if [[ "$x" =~ "hello*" ]; then
 		...
+
+	# 숫자 비교
+
+	if [[ $x -eq 1 ]]; then
+		..
+
+	if (( ex1 == ex2 )) then
+
+2.6
+
+	# C style expression
+
+	n=5
+	((n++))
+	((y=n^4))
+
+3.3
+
+	# substr 구현
+
+		${var:offset}
+		${var:offset:len}
+
+		$ var="HelloWorld"
+		$ echo ${var:2}		첫 글자 오프셋이 0. 오프셋 2부터 그 이후 문자열 리턴.
+		lloWorld
+
+		$ echo ${var:2:4}	오프셋 2부터 4글자 리턴
+		lloW
+
+	# strlen
+
+		echo ${#var}
+
+	# 문자열 앞에서 메타 문자열 패턴 삭제 (regex 아님)
+
+		$ fn=a/b/c/helloworld.sh
+		$ echo ${fn#hello}
+		world.sh
+
+	# 문자열 끝에서 메타 문자열 패턴 삭제 (regex 아님)
+
+		$ echo ${fn%.sh}		// basename $0 .sh을 문자열 오퍼레이션으로 구현
+		helloworld
